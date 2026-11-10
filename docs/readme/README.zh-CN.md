@@ -6,4 +6,6 @@
 
 ## 许可证
 
+Copyright 2026 ozs.
+
 本项目采用 Apache License 2.0 许可证。完整条款请参阅 [LICENSE](../../LICENSE)。
