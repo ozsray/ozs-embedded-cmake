@@ -1,0 +1,8 @@
+{
+    "cmake.configureOnOpen": true,
+    "cmake.enableAutomaticKitScan": false,
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.generator": "Ninja",
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+}
