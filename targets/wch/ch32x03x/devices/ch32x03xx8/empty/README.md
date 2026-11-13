@@ -6,21 +6,21 @@
 
 | MCU 型号 | 使用说明 |
 | --- | --- |
-| CH32X035D8U6 | 支持，可直接使用本工程编译 |
-| CH32X035F8U6 | 支持，可直接使用本工程编译 |
+| CH32X035R8T6 | 支持，可直接使用本工程编译 |
+| CH32X035C8T6 | 支持，可直接使用本工程编译 |
 | CH32X035G8U6 | 支持，可直接使用本工程编译 |
 | CH32X035G8R6 | 支持，可直接使用本工程编译 |
-| CH32X035C8T6 | 支持，可直接使用本工程编译 |
-| CH32X035R8T6 | 支持，可直接使用本工程编译 |
-| CH32X033F8P6 | 支持，可直接使用本工程编译 |
+| CH32X035F8U6 | 支持，可直接使用本工程编译 |
 | CH32X035F7P6 | 可能支持；按手册的型号命名规则，Flash 容量应为 48 KB，需核对实际容量，谨慎使用 |
+| CH32X035D8U6 | 支持，可直接使用本工程编译 |
+| CH32X033F8P6 | 支持，可直接使用本工程编译 |
 
 本工程的 [Ld/Link.ld](Ld/Link.ld) 默认配置为 62 KB Flash 和 20 KB SRAM。使用 CH32X035F7P6 前，应先核对 Flash 实际容量，并据此调整 `MEMORY` 段中 `FLASH` 的 `LENGTH`
 
 ## 编译准备
 
 - 安装 CMake（3.16 或更高版本）和 Ninja，并确保命令行可以调用 `cmake` 和 `ninja`
-- 安装 [**MounRiver Studio**](https://www.mounriver.com/)，WCH RISC-V GCC 工具链随其捆绑安装。WCH 官方不单独分发该工具链，直接安装 MounRiver Studio 即可。
+- Windows 平台安装 [**MounRiver Studio**](https://www.mounriver.com/)，WCH RISC-V GCC 工具链随其捆绑安装，官方不单独分发 Windows 版工具链；Linux 和 macOS 平台可从 [MounRiver Studio 官方下载页](https://www.mounriver.com/download/) 单独下载对应平台的工具链。
 - 确认 `CMakeLists.txt` 中对应操作系统的工具链目录已设置为本机实际安装路径：Windows 使用 `TOOLCHAIN_DIR_WIN`，Linux 使用 `TOOLCHAIN_DIR_LINUX`，macOS 使用 `TOOLCHAIN_DIR_MAC`
 
 Windows 下，工具链通常位于 MounRiver Studio 安装目录中的以下路径：

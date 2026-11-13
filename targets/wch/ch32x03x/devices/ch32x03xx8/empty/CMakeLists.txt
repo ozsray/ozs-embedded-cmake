@@ -168,6 +168,37 @@ endforeach()
 # define the project and enable C, assembly, and C++
 project("${PROJECT_NAME}" LANGUAGES C ASM CXX)
 
+# recursively collect C sources and headers
+set(OZS_CMAKE_AUTO_DIR
+    "${CMAKE_CURRENT_SOURCE_DIR}/ozs-cmake-auto"
+)
+
+file(GLOB_RECURSE OZS_CMAKE_AUTO_FILES
+    LIST_DIRECTORIES false
+    CONFIGURE_DEPENDS
+    "${OZS_CMAKE_AUTO_DIR}/*.c"
+    "${OZS_CMAKE_AUTO_DIR}/*.h"
+)
+
+# include the root directory
+list(APPEND INCLUDE_DIRS "${OZS_CMAKE_AUTO_DIR}")
+
+foreach(OZS_CMAKE_AUTO_FILE IN LISTS OZS_CMAKE_AUTO_FILES)
+    if(OZS_CMAKE_AUTO_FILE MATCHES "\\.c$")
+        # add C sources to the existing source list
+        list(APPEND SOURCE_FILES "${OZS_CMAKE_AUTO_FILE}")
+    elseif(OZS_CMAKE_AUTO_FILE MATCHES "\\.h$")
+        # include each directory containing headers
+        get_filename_component(OZS_CMAKE_AUTO_INCLUDE_DIR
+            "${OZS_CMAKE_AUTO_FILE}" DIRECTORY
+        )
+        list(APPEND INCLUDE_DIRS "${OZS_CMAKE_AUTO_INCLUDE_DIR}")
+    endif()
+endforeach()
+
+list(REMOVE_DUPLICATES SOURCE_FILES)
+list(REMOVE_DUPLICATES INCLUDE_DIRS)
+
 # create the firmware executable target
 add_executable("${TARGET_ELF}"
     ${SOURCE_FILES}

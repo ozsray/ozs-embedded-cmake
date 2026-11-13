@@ -6,16 +6,25 @@
 
 | MCU 型号 | 使用说明 |
 | --- | --- |
-| CH32V203F6、CH32V203G6、CH32V203C6 | 可直接使用本工程编译，默认配置为 32 KB Flash 和 10 KB SRAM |
-| CH32V203F8、CH32V203G8、CH32V203K8、CH32V203C8 | 也可使用，但默认仍按 x6 的容量进行链接，即 32 KB Flash 和 10 KB SRAM |
-| CH32V203RB | 不属于本工程默认适用范围，需另行适配 |
+| CH32V203F6P6 | 可直接使用本工程编译，默认配置为 32 KB Flash 和 10 KB SRAM |
+| CH32V203F8P6 | 也可使用，但默认仍按 x6 的容量进行链接，即 32 KB Flash 和 10 KB SRAM |
+| CH32V203F8U6 | 也可使用，但默认仍按 x6 的容量进行链接，即 32 KB Flash 和 10 KB SRAM |
+| CH32V203G6U6 | 可直接使用本工程编译，默认配置为 32 KB Flash 和 10 KB SRAM |
+| CH32V203G8R6 | 也可使用，但默认仍按 x6 的容量进行链接，即 32 KB Flash 和 10 KB SRAM |
+| CH32V203K8T6 | 也可使用，但默认仍按 x6 的容量进行链接，即 32 KB Flash 和 10 KB SRAM |
+| CH32V203K8U7 | 也可使用，但默认仍按 x6 的容量进行链接，即 32 KB Flash 和 10 KB SRAM |
+| CH32V203C6T6 | 可直接使用本工程编译，默认配置为 32 KB Flash 和 10 KB SRAM |
+| CH32V203C8T6 | 也可使用，但默认仍按 x6 的容量进行链接，即 32 KB Flash 和 10 KB SRAM |
+| CH32V203C6U6 | 可直接使用本工程编译，默认配置为 32 KB Flash 和 10 KB SRAM |
+| CH32V203C8U6 | 也可使用，但默认仍按 x6 的容量进行链接，即 32 KB Flash 和 10 KB SRAM |
+| CH32V203RBT6 | 不属于本工程默认适用范围，需另行适配 |
 
-使用 CH32V203x8 时，若需使用完整的 64 KB Flash 和 20 KB SRAM，应修改 [Ld/Link.ld](Ld/Link.ld) 中 `MEMORY` 段当前生效的容量定义：将 `FLASH` 的 `LENGTH` 从 `32K` 改为 `64K`，将 `RAM` 的 `LENGTH` 从 `10K` 改为 `20K`
+本工程的 [Ld/Link.ld](Ld/Link.ld) 默认配置为 32 KB Flash 和 10 KB SRAM。使用 CH32V203x8 时，若需使用完整的 64 KB Flash 和 20 KB SRAM，应将 `MEMORY` 段中 `FLASH` 的 `LENGTH` 改为 `64K`，将 `RAM` 的 `LENGTH` 改为 `20K`
 
 ## 编译准备
 
 - 安装 CMake（3.16 或更高版本）和 Ninja，并确保命令行可以调用 `cmake` 和 `ninja`
-- 安装 [**MounRiver Studio**](https://www.mounriver.com/)，WCH RISC-V GCC 工具链随其捆绑安装。WCH 官方不单独分发该工具链，直接安装 MounRiver Studio 即可。
+- Windows 平台安装 [**MounRiver Studio**](https://www.mounriver.com/)，WCH RISC-V GCC 工具链随其捆绑安装，官方不单独分发 Windows 版工具链；Linux 和 macOS 平台可从 [MounRiver Studio 官方下载页](https://www.mounriver.com/download/) 单独下载对应平台的工具链。
 - 确认 `CMakeLists.txt` 中对应操作系统的工具链目录已设置为本机实际安装路径：Windows 使用 `TOOLCHAIN_DIR_WIN`，Linux 使用 `TOOLCHAIN_DIR_LINUX`，macOS 使用 `TOOLCHAIN_DIR_MAC`
 
 Windows 下，工具链通常位于 MounRiver Studio 安装目录中的以下路径：
